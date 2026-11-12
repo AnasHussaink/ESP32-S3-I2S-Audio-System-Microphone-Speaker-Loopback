@@ -3,12 +3,12 @@
 #include "Audio.h"
 
 // Your WiFi
-#define WIFI_SSID     "YourWifiname"
+#define WIFI_SSID "YourWifiname"
 #define WIFI_PASSWORD "YourWifiPassword"
 
 #define I2S_DOUT 16
 #define I2S_BCLK 3
-#define I2S_LRC  8
+#define I2S_LRC 8
 
 Audio audio;
 
@@ -40,18 +40,10 @@ void setup() {
   audio.connecttohost("http://stream.live.vc.bbcmedia.co.uk/bbc_world_service");
 }
 
-void loop() {
-  audio.loop();
-}
+void loop() { audio.loop(); }
 
-void audio_info(const char *info) {
-  Serial.printf("INFO: %s\n", info);
-}
+void audio_info(const char *info) { Serial.printf("INFO: %s\n", info); }
 
-void audio_showstation(const char *info) {
-  Serial.printf("Station: %s\n", info);
-}
+void audio_showstation(const char *info) { Serial.printf("Station: %s\n", info); }
 
-void audio_showstreamtitle(const char *info) {
-  Serial.printf("Title: %s\n", info);
-}
+void audio_showstreamtitle(const char *info) { Serial.printf("Title: %s\n", info); }

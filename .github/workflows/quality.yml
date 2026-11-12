@@ -1,0 +1,46 @@
+name: Repository quality
+
+on:
+  push:
+    branches: [main, 'chore/**', 'feat/**', 'fix/**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Check source syntax, local documentation links and conflict markers
+        run: python tools/check_repository.py
+      - name: Install C/C++ tools
+        run: |
+          python -m pip install clang-format==18.1.8
+          sudo apt-get update
+          sudo apt-get install -y cppcheck
+      - name: Enforce application formatting
+        run: python tools/format_sources.py --check
+      - name: Analyze application sources
+        run: cppcheck --enable=warning,performance,portability --error-exitcode=1 --inline-suppr --suppress=missingIncludeSystem --suppress=missingInclude --suppress=unmatchedSuppression --language=c++ --std=c++11 -DARDUINO Audio_Test.ino Speaker_Test.ino
+  firmware:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - run: python -m pip install platformio==6.1.18
+      - name: Compile ESP32-S3 firmware
+        run: pio run

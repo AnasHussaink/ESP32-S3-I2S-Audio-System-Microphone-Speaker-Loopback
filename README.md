@@ -79,3 +79,10 @@ Embedded audio, digital I2S interfaces, DMA buffering, real-time signal processi
 ## License
 
 See LICENSE.
+
+
+## Development and quality
+
+[![Repository quality](https://github.com/AnasHussaink/ESP32-S3-I2S-Audio-System-Microphone-Speaker-Loopback/actions/workflows/quality.yml/badge.svg)](https://github.com/AnasHussaink/ESP32-S3-I2S-Audio-System-Microphone-Speaker-Loopback/actions/workflows/quality.yml)
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for branch/PR workflow, local checks and CI coverage.
