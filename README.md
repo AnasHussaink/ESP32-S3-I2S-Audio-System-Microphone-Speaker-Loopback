@@ -79,3 +79,14 @@ Embedded audio, digital I2S interfaces, DMA buffering, real-time signal processi
 ## License
 
 See LICENSE.
+
+
+## Development and quality
+
+[![Repository quality](https://github.com/AnasHussaink/ESP32-S3-I2S-Audio-System-Microphone-Speaker-Loopback/actions/workflows/quality.yml/badge.svg)](https://github.com/AnasHussaink/ESP32-S3-I2S-Audio-System-Microphone-Speaker-Loopback/actions/workflows/quality.yml)
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for branch/PR workflow, local checks and CI coverage.
+
+## Technical scope
+
+ESP32-S3 embedded audio with Arduino C++, I2S, INMP441, MAX98357A, DMA buffering and microphone-to-speaker loopback. PlatformIO compiles the original sketches through small C++ wrappers in `pio-src/`.
